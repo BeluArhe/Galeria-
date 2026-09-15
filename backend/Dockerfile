@@ -1,12 +1,11 @@
-FROM node:18-alpine
+FROM python:3.10-slim
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+RUN pip install --no-cache-dir flask flask-cors
 
-COPY . .
+COPY app.py .
 
-EXPOSE 5173
+EXPOSE 5000
 
-CMD ["npm", "run", "dev", "--", "--host"]
+CMD ["python", "app.py"]
